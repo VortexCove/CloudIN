@@ -1,0 +1,531 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CloudIN - Login</title>
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Font-Awesome-Icons-CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/fontawesome-all.min.css">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" type="text/css" href="static/css/style-starter.css">
+</head>
+
+<body class="no-scroll">
+    <style>
+        /* Oval Button Style */
+.btn-oval {
+    border-radius: 30px;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+.card {
+    background-color: rgba(52, 58, 64, 0.8);
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.card-body {
+    padding: 40px;
+}
+
+.form-group label {
+    color: #ffffff;
+}
+
+.form-control {
+    background-color: #444444;
+    border: none;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background-color: #555555;
+    color: #ffffff;
+    border: 1px solid #777777;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    align-items: center;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+            border-radius: 20px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            background-color: #ff0000;
+            color: #fff;
+            animation: slideInUp 0.5s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+            display: none;
+        }
+
+        @keyframes slideInDown {
+            0% {
+                transform: translate(-50%, 100%);
+            }
+            100% {
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .alert-success {
+    background-color: green;
+}
+
+.alert {
+    border-radius: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    color: #fff;
+    display: none;
+}
+
+    </style>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0">
+                <h1>
+                    <a class="navbar-brand" href="{{ url_for('base') }}">
+                        <i class="fab fa-accusoft icon-color mr-1"></i>Cloud<span>In</span>
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <!-- //search button -->
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <section id="home" class="w3l-banner py-5">
+        <div class="banner-image">
+
+        </div>
+        <div class="banner-content">
+            <div class="alert alert-success" id="success-alert" style="display: none;"></div>
+            <div class="container pt-5 pb-md-4">
+                <div class="container py-md-5">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-10 login-card">
+                            
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="text-center mb-4">Login</h3>
+                                    <form method="POST" action="{{ url_for('login') }}">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block btn-oval">Login</button>
+                        
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <p>Don't have an account? <a href="{{ url_for('register') }}">Register </a></p>
+                            </div>
+                        </div>
+                        <div id="error-alert" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: {% if error_message %}block{% else %}none{% endif %};">
+                            {{ error_message }}
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+           
+
+        </div>
+    </section>
+    <script>
+        function validateForm() {
+        
+            var password = document.getElementById("password").value;
+            if (password !== "123456") {
+                document.getElementById("error-alert").classList.add('show');
+                setTimeout(function() {
+                    document.getElementById("error-alert").classList.remove('show');
+                }, 5000); // 5000 milliseconds = 5 seconds
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
+    <script>
+        // Function to extract and display the success message from the URL
+        function showSuccessMessage() {
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            // Check if the URL contains a success message parameter
+            if (urlParams.has('success_message')) {
+                // Get the value of the success message parameter
+                const successMessage = urlParams.get('success_message');
+                // Display the success message
+                const successAlert = document.getElementById('success-alert');
+                successAlert.innerText = successMessage;
+                successAlert.style.display = 'block';
+                // Hide the success message after 5 seconds
+                setTimeout(function() {
+                    successAlert.style.display = 'none';
+                }, 5000);
+            }
+        }
+    
+        // Call the function when the page loads
+        window.onload = function() {
+            showSuccessMessage();
+        };
+    </script>
+    
+
+    
+    <script>
+        // Display error message for 3 seconds
+        setTimeout(function() {
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'block';
+        }, 500);
+    
+        setTimeout(function() {
+            var errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'none';
+        }, 3000);
+    </script>
+    
+
+    <!-- Js scripts -->
+    <!-- move top -->
+
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- banner image moving effect -->
+    <script>
+        var lFollowX = 0,
+            lFollowY = 0,
+            x = 0,
+            y = 0,
+            friction = 1 / 30;
+
+        function animate() {
+            x += (lFollowX - x) * friction;
+            y += (lFollowY - y) * friction;
+
+            translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+            $('.banner-image').css({
+                '-webit-transform': translate,
+                '-moz-transform': translate,
+                'transform': translate
+            });
+
+            window.requestAnimationFrame(animate);
+        }
+
+        $(window).on('mousemove click', function (e) {
+
+            var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+            var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+            lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+            lFollowY = (10 * lMouseY) / 100;
+
+        });
+
+        animate();
+    </script>
+    <!-- //banner image moving effect -->
+
+    <!-- typig-text-->
+    <script>
+        const typedTextSpan = document.querySelector(".typed-text");
+        const cursorSpan = document.querySelector(".cursor");
+
+        const textArray = ["Designer's", "Developer's", "Creator's"];
+        const typingDelay = 300;
+        const erasingDelay = 10;
+        const newTextDelay = 100; // Delay between current and next text
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                // add class 'typing' if there's none
+                if (!cursorSpan.classList.contains("typing")) {
+                    cursorSpan.classList.add("typing");
+                }
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, 0);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                cursorSpan.classList.remove("typing");
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+    </script>
+    <!-- //typig-text-->
+
+    <!-- owl carousel -->
+    <script src="static/js/owl.carousel.js"></script>
+    <!-- script for tesimonials carousel slider -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+                loop: true,
+                nav: false,
+                margin: 50,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 1000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    },
+                    991: {
+                        items: 2,
+                        margin: 30,
+                        nav: false
+                    },
+                    1080: {
+                        items: 3,
+                        nav: false
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script for tesimonials carousel slider -->
+    <!-- //owl carousel -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="static/js/theme-change.js"></script>
+    <script>
+        function autoType(elementClass, typingSpeed) {
+            var thhis = $(elementClass);
+            thhis.css({
+                "position": "relative",
+                "display": "inline-block"
+            });
+            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+            thhis = thhis.find(".text-js");
+            var text = thhis.text().trim().split('');
+            var amntOfChars = text.length;
+            var newString = "";
+            thhis.text("|");
+            setTimeout(function () {
+                thhis.css("opacity", 1);
+                thhis.prev().removeAttr("style");
+                thhis.text("");
+                for (var i = 0; i < amntOfChars; i++) {
+                    (function (i, char) {
+                        setTimeout(function () {
+                            newString += char;
+                            thhis.text(newString);
+                        }, i * typingSpeed);
+                    })(i + 1, text[i]);
+                }
+            }, 1500);
+        }
+
+        $(document).ready(function () {
+            // Now to start autoTyping just call the autoType function with the 
+            // class of outer div
+            // The second paramter is the speed between each letter is typed.   
+            autoType(".type-js", 200);
+        });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- magnific popup -->
+    <script src="static/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script src="static/js/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+</body>
+
+</html>
